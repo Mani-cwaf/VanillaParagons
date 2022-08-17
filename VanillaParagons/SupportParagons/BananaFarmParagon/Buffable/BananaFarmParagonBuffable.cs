@@ -7,6 +7,8 @@ using Assets.Scripts.Models.Towers.TowerFilters;
 using Assets.Scripts.Models.Towers.Weapons.Behaviors;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Unity;
+using Assets.Scripts.Utils;
+using BTD_Mod_Helper.Api.Enums;
 using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using SubTowers.LordPhenix;
@@ -21,7 +23,7 @@ namespace VanillaParagons.SupportParagons.BananaFarmParagon.Buffable
     public class BananaFarmParagonBuffable : ModTower
     {
         public override string DisplayName => "Buffable Banana Monopoly";
-        public override string TowerSet => SUPPORT;
+        public override string TowerSet => TowerSetType.Support;
         public override bool DontAddToShop => !EnableBuffableParagons;
         public override string BaseTower => "BananaFarm-500";
         public override int Cost => 1257500;
@@ -37,7 +39,7 @@ namespace VanillaParagons.SupportParagons.BananaFarmParagon.Buffable
             projectile.GetBehavior<CashModel>().minimum = 5550;
             projectile.GetBehavior<CashModel>().maximum = 5550;
             projectile.ApplyDisplay<BananaCrateDisplay>();
-            tower.AddBehavior(new PerRoundCashBonusTowerModel("BananaFarmParagonPerRoundCashBonusTowerModel", 165000, 0, 1, "80178409df24b3b479342ed73cffb63d", false));
+            tower.AddBehavior(new PerRoundCashBonusTowerModel("BananaFarmParagonPerRoundCashBonusTowerModel", 165000, 0, 1, new PrefabReference() { guidRef = "80178409df24b3b479342ed73cffb63d" }, false));
         }
         public override int GetTowerIndex(List<TowerDetailsModel> towerSet)
         {

@@ -6,6 +6,7 @@ using Assets.Scripts.Models.Towers.Behaviors.Emissions;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Unity;
+using BTD_Mod_Helper.Api.Enums;
 using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using SubTowers.LordPhenix;
@@ -18,7 +19,7 @@ namespace VanillaParagons.MilitaryParagons.DartlingGunnerParagon.Buffable
     public class DartlingGunnerParagonBuffable : ModTower
     {
         public override string DisplayName => "Buffable Ray of Annihilation";
-        public override string TowerSet => MAGIC;
+        public override string TowerSet => TowerSetType.Military;
         public override bool DontAddToShop => !EnableBuffableParagons;
         public override string BaseTower => "DartlingGunner-250";
         public override int Cost => 900000;

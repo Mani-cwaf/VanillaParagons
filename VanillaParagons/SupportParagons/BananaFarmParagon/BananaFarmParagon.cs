@@ -3,6 +3,7 @@ using Assets.Scripts.Models.Towers.Behaviors;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Assets.Scripts.Models.Towers.Weapons.Behaviors;
 using Assets.Scripts.Unity.Display;
+using Assets.Scripts.Utils;
 using BTD_Mod_Helper.Api.Display;
 using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
@@ -29,7 +30,7 @@ namespace VanillaParagons.SupportParagons.BananaFarmParagon
             projectile.GetBehavior<CashModel>().minimum = 5550;
             projectile.GetBehavior<CashModel>().maximum = 5550;
             projectile.ApplyDisplay<BananaCrateDisplay>();
-            tower.AddBehavior(new PerRoundCashBonusTowerModel("BananaFarmParagonPerRoundCashBonusTowerModel", 165000, 0, 1, "80178409df24b3b479342ed73cffb63d", false));
+            tower.AddBehavior(new PerRoundCashBonusTowerModel("BananaFarmParagonPerRoundCashBonusTowerModel", 165000, 0, 1, new PrefabReference() { guidRef = "80178409df24b3b479342ed73cffb63d" }, false));
 
         }
         public class BananaMonopolyDisplay : ModTowerDisplay<BananaFarmParagonBase>

@@ -12,6 +12,7 @@ using System.Linq;
 using UnhollowerBaseLib;
 using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 using Assets.Scripts.Models.Towers.Weapons;
+using Assets.Scripts.Models.Towers.Behaviors;
 
 namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
 {
@@ -35,7 +36,7 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
             var seekingBehavior = new TrackTargetModel("MonkeyAceParagonTrackTargetModel", 9999999, true, false, 360, true, 800, false, false);
             projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 2f, false, false));
             projectile.AddBehavior(seekingBehavior);
-            projectile.GetDamageModel().damage += 2;
+            projectile.GetDamageModel().damage += 16;
             projectile.pierce += 50;
             weapon.emission = new ArcEmissionModel("MonkeyAceParagonArcEmissionModel", 128, 180, 360, null, false);
             weapon.rate *= 0.5f;

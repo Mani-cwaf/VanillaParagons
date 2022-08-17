@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Models.Towers;
+﻿using Assets.Scripts.Models.GenericBehaviors;
+using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Models.Towers.Behaviors;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.TowerFilters;
@@ -23,9 +24,9 @@ namespace VanillaParagons.SupportParagons.VillageParagon
         public override void ApplyUpgrade(TowerModel tower)
         {
             tower.AddBehavior(new RangeSupportModel("GodBoostingRange", true, 0, 10, "RangeMutator", null, false, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
-            tower.AddBehavior(new RateSupportModel("GodBoostingAttackSpeed", .5f, true, "AttackSpeedMutator", false, 0, null, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
-            tower.AddBehavior(new DamageSupportModel("GodBoostingDamage", true, 10, "DamageMutator", null, false, false, 0.0f));
-            tower.AddBehavior(new PierceSupportModel("GodBoostingPierce", true, 20, "PierceMutator", null, false, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
+            tower.AddBehavior(new RateSupportModel("GodBoostingAttackSpeed", .085f, true, "AttackSpeedMutator", false, 0, null, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
+            tower.AddBehavior(new DamageSupportModel("GodBoostingDamage", true, 26, "DamageMutator", null, false, false, 0.0f));
+            tower.AddBehavior(new PierceSupportModel("GodBoostingPierce", true, 40, "PierceMutator", null, false, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
             tower.AddBehavior(new MonkeyCityIncomeSupportModel("GodBoostingIncome", true, 1.5f, null, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
             tower.AddBehavior(new CashbackZoneModel("CashBackMrEnderTowerV4", 0.3f, 1, "MrEnderTowerV4", 1));
             tower.AddBehavior(new DiscountZoneModel("DiscountMrEnderTowerV4", 0.25f, 1, "DiscountZoneMrEnderTowerV4", "MrEnderTowerV4", true, 6, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
@@ -34,7 +35,7 @@ namespace VanillaParagons.SupportParagons.VillageParagon
             var ballistaAttack = Game.instance.model.GetTower(TowerType.MonkeyVillage, 5).GetBehaviors<AttackModel>()[1].Duplicate();
             tower.AddBehavior(ballistaAttack);
             var weapon = tower.GetWeapon();
-            weapon.projectile.GetDamageModel().damage = 10000;
+            weapon.projectile.GetDamageModel().damage = 1000;
         }
     }
 }

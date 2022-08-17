@@ -6,6 +6,7 @@ using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Assets.Scripts.Models.Towers.TowerFilters;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Unity;
+using BTD_Mod_Helper.Api.Enums;
 using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using SubTowers.LordPhenix;
@@ -19,7 +20,7 @@ namespace VanillaParagons.SupportParagons.VillageParagon.Buffable
     public class VillageParagonBuffable : ModTower
     {
         public override string DisplayName => "Buffable Fortress Of Defence";
-        public override string TowerSet => SUPPORT;
+        public override string TowerSet => TowerSetType.Support;
         public override bool DontAddToShop => !EnableBuffableParagons;
         public override string BaseTower => "MonkeyVillage-250";
         public override int Cost => 900000;

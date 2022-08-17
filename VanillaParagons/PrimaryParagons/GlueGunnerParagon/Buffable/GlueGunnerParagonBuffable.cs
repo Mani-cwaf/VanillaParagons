@@ -7,6 +7,7 @@ using Assets.Scripts.Models.Towers.Filters;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Unity;
+using BTD_Mod_Helper.Api.Enums;
 using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using SubTowers.LordPhenix;
@@ -19,7 +20,7 @@ namespace VanillaParagons.PrimaryParagons.GlueGunnerParagon.Buffable
     public class GlueGunnerParagonBuffable : ModTower
     {
         public override string DisplayName => "Buffable Ultimate Adhesive";
-        public override string TowerSet => MAGIC;
+        public override string TowerSet => TowerSetType.Primary;
         public override bool DontAddToShop => !EnableBuffableParagons;
         public override string BaseTower => "GlueGunner-025";
         public override int Cost => 900000;

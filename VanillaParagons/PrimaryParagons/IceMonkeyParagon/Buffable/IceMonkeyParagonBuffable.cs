@@ -8,6 +8,7 @@ using Assets.Scripts.Models.Towers.TowerFilters;
 using Assets.Scripts.Models.Towers.Weapons.Behaviors;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Unity;
+using BTD_Mod_Helper.Api.Enums;
 using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using SubTowers.LordPhenix;
@@ -22,7 +23,7 @@ namespace VanillaParagons.PrimaryParagons.IceMonkeyParagon.Buffable
     public class IceMonkeyParagonBuffable : ModTower
     {
         public override string DisplayName => "Buffable Indefinate Negative";
-        public override string TowerSet => SUPPORT;
+        public override string TowerSet => TowerSetType.Primary;
         public override bool DontAddToShop => !EnableBuffableParagons;
         public override string BaseTower => "IceMonkey-025";
         public override int Cost => 1257500;

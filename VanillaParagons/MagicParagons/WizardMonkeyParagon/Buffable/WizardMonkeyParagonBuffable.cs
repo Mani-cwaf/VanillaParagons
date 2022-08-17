@@ -6,6 +6,7 @@ using Assets.Scripts.Models.Towers.Filters;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Unity;
+using BTD_Mod_Helper.Api.Enums;
 using BTD_Mod_Helper.Api.Towers;
 using BTD_Mod_Helper.Extensions;
 using SubTowers.LordPhenix;
@@ -18,7 +19,7 @@ namespace VanillaParagons.MagicParagons.WizardMonkeyParagon.Buffable
     public class WizardMonkeyParagonBuffable : ModTower
     {
         public override string DisplayName => "Buffable Grand Mage";
-        public override string TowerSet => MAGIC;
+        public override string TowerSet => TowerSetType.Magic;
         public override bool DontAddToShop => !EnableBuffableParagons;
         public override string BaseTower => "WizardMonkey-502";
         public override int Cost => 900000;

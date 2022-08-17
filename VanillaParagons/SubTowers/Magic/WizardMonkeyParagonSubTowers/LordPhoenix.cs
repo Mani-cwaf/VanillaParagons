@@ -17,13 +17,14 @@ using UnhollowerBaseLib;
 using UnityEngine;
 using System.Linq;
 using Assets.Scripts.Models.Towers.Weapons.Behaviors;
+using BTD_Mod_Helper.Api.Enums;
 
 namespace SubTowers.LordPhenix
 {
     class LordPhoenix : ModTower
     {
         public override string Name => "WizardParagonLordPheonix";
-        public override string TowerSet => MAGIC;
+        public override string TowerSet => TowerSetType.Magic;
         public override string BaseTower => "LordPhoenix";
         public override int Cost => 0;
 

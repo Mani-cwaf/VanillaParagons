@@ -20,7 +20,10 @@ namespace VanillaParagons
 {
     class Main : BloonsTD6Mod
     {
+        [Obsolete]
         public override string MelonInfoCsURL => "https://github.com/Mani-cwaf/BTD6Mods/raw/main/VanillaParagons/Mod%20Code/Main.cs";
+
+        [Obsolete]
         public override string LatestURL => "https://github.com/Mani-cwaf/BTD6Mods/raw/main/VanillaParagons/Mod%20File/VanillaParagons.dll";
 
         static Dictionary<string, Type> Paragons = new Dictionary<string, Type>()
@@ -56,7 +59,7 @@ namespace VanillaParagons
             {
                 var tower = __instance.tower;
                 var towerModel = tower.towerModel;
-                var degree = tower.GetTowerBehavior<ParagonTower>().GetCurrentDegree();
+                var degree = tower.GetTowerBehavior<ParagonTower>().GetCurrentDegree();               
                 if (towerModel.baseId == "BananaFarm")
                 {
                     if (degree % 5 == 0)
@@ -87,10 +90,10 @@ namespace VanillaParagons
                 {
                     if (degree >= 1)
                     {
-                        towerModel.GetBehavior<RangeSupportModel>().additive += (float)degree / 10;
-                        towerModel.GetBehavior<RateSupportModel>().multiplier *= (float)1 / (degree / 40);
-                        towerModel.GetBehavior<DamageSupportModel>().increase += (float)degree / 10;
-                        towerModel.GetBehavior<PierceSupportModel>().pierce += (float)degree / 5;
+                        towerModel.GetBehavior<RangeSupportModel>().additive += (float)degree / 4;
+                        towerModel.GetBehavior<RateSupportModel>().multiplier *= (float)1 / (degree / 20);
+                        towerModel.GetBehavior<DamageSupportModel>().increase += (float)degree / 4;
+                        towerModel.GetBehavior<PierceSupportModel>().pierce += (float)degree / 2;
 
                         if (degree >= 75)
                         {

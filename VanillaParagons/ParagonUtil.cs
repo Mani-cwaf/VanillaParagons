@@ -47,7 +47,7 @@ namespace ParagonUtil
                 localizedNameOverride: ""
             );
 
-            towerModel = new TowerModel();
+            towerModel = new TowerModel(null, null, null, null);
 
             towerModel.name = $"{BaseId}-Paragon";
             towerModel.display = baseTower.display;
