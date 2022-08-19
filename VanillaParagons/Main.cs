@@ -20,36 +20,9 @@ namespace VanillaParagons
 {
     class Main : BloonsTD6Mod
     {
-        [Obsolete]
-        public override string MelonInfoCsURL => "https://github.com/Mani-cwaf/BTD6Mods/raw/main/VanillaParagons/Mod%20Code/Main.cs";
 
-        [Obsolete]
-        public override string LatestURL => "https://github.com/Mani-cwaf/BTD6Mods/raw/main/VanillaParagons/Mod%20File/VanillaParagons.dll";
-
-        static Dictionary<string, Type> Paragons = new Dictionary<string, Type>()
-        {
-            { "WizardMonkey", typeof(MagicParagons.WizardMonkeyParagon.WizardMonkeyParagon) },
-            { "SuperMonkey", typeof(MagicParagons.SuperMonkeyParagon.SuperMonkeyParagon) },
-            { "Druid", typeof(MagicParagons.DruidParagon.DruidParagon) },
-            { "Alchemist", typeof(MagicParagons.AlchemistParagon.AlchemistParagon) },
-            { "DartlingGunner", typeof(MilitaryParagons.DartlingGunnerParagon.DartlingGunnerParagon) },
-            { "MonkeyAce", typeof(MilitaryParagons.MonkeyAceParagon.MonkeyAceParagon) },
-            { "MonkeySub", typeof(MilitaryParagons.MonkeySubParagon.MonkeySubParagon) },
-            { "MortarMonkey", typeof(MilitaryParagons.MortarMonkeyParagon.MortarMonkeyParagon) },
-            { "HeliPilot", typeof(MilitaryParagons.HeliPilotParagon.HeliPilotParagon) },
-            { "SniperMonkey", typeof(MilitaryParagons.SniperParagon.SniperParagon) },
-            { "BombShooter", typeof(PrimaryParagons.BombShooterParagon.BombShooterParagon) },
-            { "GlueGunner", typeof(PrimaryParagons.GlueGunnerParagon.GlueGunnerParagon) },
-            { "IceMonkey", typeof(PrimaryParagons.IceMonkeyParagon.IceMonkeyParagon) },
-            { "TackShooter", typeof(PrimaryParagons.TackShooterParagon.TackShooterParagon) },
-            { "BananaFarm", typeof(SupportParagons.BananaFarmParagon.BananaFarmParagon) },
-            { "EngineerMonkey", typeof(SupportParagons.EngineerMonkeyParagon.EngineerMonkeyParagon) },
-            { "SpikeFactory", typeof(SupportParagons.SpikeFactoryParagon.SpikeFactoryParagon) },
-            { "MonkeyVillage", typeof(SupportParagons.VillageParagon.VillageParagon) }
-        };
-
-        public static ModSettingBool EnableParagons = new ModSettingBool(false) { displayName = "Paragons enabled? (Requires restart.)" };
-        public static ModSettingBool EnableBuffableParagons = new ModSettingBool(false) { displayName = "Buffable Versions of Paragons enabled? (Requires restart.)" };
+        public static ModSettingBool EnableParagons = new ModSettingBool(true) { displayName = "Paragons enabled? (Requires restart.)" };
+        public static ModSettingBool EnableBuffableParagons = new ModSettingBool(true) { displayName = "Buffable Versions of Paragons enabled? (Requires restart.)" };
 
         [HarmonyPatch(typeof(ParagonTower), nameof(ParagonTower.UpdateDegree))]
         class UpdateDegreePatch
@@ -114,21 +87,6 @@ namespace VanillaParagons
         public override void OnGameModelLoaded(GameModel model)
         {
             base.OnGameModelLoaded(model);
-        }
-        public void CreateUpgrade(TowerModel towerModel, int price, SpriteReference icon, GameModel model)
-        {
-            UpgradeModel upgradeModel = new UpgradeModel(
-            name: towerModel.baseId + " Paragon",
-            cost: price,
-            xpCost: 0,
-            icon: icon,
-            path: -1,
-            tier: 5,
-            locked: 0,
-            confirmation: "Paragon",
-            localizedNameOverride: ""
-            );
-            model.AddUpgrade(upgradeModel);
         }
     }
 }

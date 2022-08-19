@@ -23,19 +23,19 @@ namespace VanillaParagons.SupportParagons.VillageParagon
         //public override string Portrait => "";
         public override void ApplyUpgrade(TowerModel tower)
         {
-            tower.AddBehavior(new RangeSupportModel("GodBoostingRange", true, 0, 10, "RangeMutator", null, false, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
-            tower.AddBehavior(new RateSupportModel("GodBoostingAttackSpeed", .085f, true, "AttackSpeedMutator", false, 0, null, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
-            tower.AddBehavior(new DamageSupportModel("GodBoostingDamage", true, 26, "DamageMutator", null, false, false, 0.0f));
-            tower.AddBehavior(new PierceSupportModel("GodBoostingPierce", true, 40, "PierceMutator", null, false, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
+            tower.AddBehavior(new RangeSupportModel("GodBoostingRange", true, 0, 20, "RangeMutator", null, false, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
+            tower.AddBehavior(new RateSupportModel("GodBoostingAttackSpeed", .075f, true, "AttackSpeedMutator", false, 0, null, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
+            tower.AddBehavior(new DamageSupportModel("GodBoostingDamage", true, 46, "DamageMutator", null, false, false, 0.0f));
+            tower.AddBehavior(new PierceSupportModel("GodBoostingPierce", true, 80, "PierceMutator", null, false, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
             tower.AddBehavior(new MonkeyCityIncomeSupportModel("GodBoostingIncome", true, 1.5f, null, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
             tower.AddBehavior(new CashbackZoneModel("CashBackMrEnderTowerV4", 0.3f, 1, "MrEnderTowerV4", 1));
             tower.AddBehavior(new DiscountZoneModel("DiscountMrEnderTowerV4", 0.25f, 1, "DiscountZoneMrEnderTowerV4", "MrEnderTowerV4", true, 6, "EnderGodBoost", "BuffIconTempleSunGod4xx"));
             tower.AddBehavior(new VisibilitySupportModel("CamoMrEnderTowerV4", true, "CamoMutatorMrEnderTowerV4", new Il2CppReferenceArray<TowerFilterModel>(0), "EnderGodBoost", "BuffIconTempleSunGod4xx"));
             tower.AddBehavior(new DamageTypeSupportModel("BloonPropertiesMrEnderTowerV4", true, "BloonPropertiesMutatorMrEnderTowerV4", BloonProperties.None, new Il2CppReferenceArray<TowerFilterModel>(0), "EnderGodBoost", "BuffIconTempleSunGod4xx"));
-            var ballistaAttack = Game.instance.model.GetTower(TowerType.MonkeyVillage, 5).GetBehaviors<AttackModel>()[1].Duplicate();
-            tower.AddBehavior(ballistaAttack);
-            var weapon = tower.GetWeapon();
-            weapon.projectile.GetDamageModel().damage = 1000;
+            //var ballistaAttack = Game.instance.model.GetTower(TowerType.MonkeyVillage, 5).GetBehaviors<AttackModel>()[1].Duplicate();
+            //tower.AddBehavior(ballistaAttack);
+            //var weapon = tower.GetWeapon();
+            //weapon.projectile.GetDamageModel().damage = 2500;
         }
     }
 }

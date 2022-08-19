@@ -27,16 +27,19 @@ namespace VanillaParagons.PrimaryParagons.IceMonkeyParagon
             var weapon = tower.GetWeapon();
             var projectile = weapon.projectile;
             projectile.RemoveBehavior<DamageModel>();
-            projectile.AddBehavior(new DamageModel("IceMonkeyParagonDamageModel", 5000, 999999, true, true, true, BloonProperties.None, BloonProperties.None));
-            projectile.AddBehavior(new AddBonusDamagePerHitToBloonModel("IceMonkeyParagonAddBonusDamagePerHitToBloonModel", "", 2, 50, 999999, true, false, false));
+            projectile.AddBehavior(new DamageModel("IceMonkeyParagonDamageModel", 45000, 999999, true, true, true, BloonProperties.None, BloonProperties.None));
+            projectile.AddBehavior(new AddBonusDamagePerHitToBloonModel("IceMonkeyParagonAddBonusDamagePerHitToBloonModel", "", 2, 100, 999999, true, false, false));
             projectile.RemoveBehaviors<SlowModifierForTagModel>();
-            tower.GetDescendants<FilterInvisibleModel>().ForEach(model => model.isActive = false);
-            tower.AddBehavior(new SlowBloonsZoneModel("IceMonkeyParagonSlowBloonsZoneModel", 0, "", true, null, 0.25f, 0, true, 0, "", false, null));
+            tower.AddBehavior(new SlowBloonsZoneModel("IceMonkeyParagonSlowBloonsZoneModel", 75, "", true, null, 0.2f, 0, false, 0, "", false, null));
             tower.RemoveBehaviors<FilterMoabModel>();
             tower.RemoveBehaviors<FilterOutTagModel>();
             tower.RemoveBehaviors<FilterBloonIfDamageTypeModel>();
             tower.range += 25;
+            weapon.rate *= 0.2f;
             attackModel.range += 25;
+
+            tower.GetDescendants<FilterInvisibleModel>().ForEach(model => model.isActive = false);
+            tower.AddBehavior(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true));
         }
     }
 } 
