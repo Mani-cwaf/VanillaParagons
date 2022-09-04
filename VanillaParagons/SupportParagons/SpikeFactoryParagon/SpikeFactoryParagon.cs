@@ -50,14 +50,14 @@ namespace VanillaParagons.SupportParagons.SpikeFactoryParagon
             aat2.projectile = projectile;
             aat3.projectile = projectile;
             aat4.projectile = projectile;
-            aat1.GetBehavior<WeaponRateMinModel>().min *= 0.2f;
-            aat2.GetBehavior<WeaponRateMinModel>().min *= 0.2f;
-            aat3.GetBehavior<WeaponRateMinModel>().min *= 0.2f;
-            aat4.GetBehavior<WeaponRateMinModel>().min *= 0.2f;
-            aat1.rate *= 0.2f;
-            aat2.rate *= 0.2f;
-            aat3.rate *= 0.2f;
-            aat4.rate *= 0.2f;
+            aat1.GetBehavior<WeaponRateMinModel>().min *= 0.5f;
+            aat2.GetBehavior<WeaponRateMinModel>().min *= 0.5f;
+            aat3.GetBehavior<WeaponRateMinModel>().min *= 0.5f;
+            aat4.GetBehavior<WeaponRateMinModel>().min *= 0.5f;
+            aat1.rate *= 0.5f;
+            aat2.rate *= 0.5f;
+            aat3.rate *= 0.5f;
+            aat4.rate *= 0.5f;
             tower.AddBehavior(abilty);
         }
     }
