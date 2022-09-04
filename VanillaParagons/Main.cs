@@ -4,6 +4,7 @@ using Assets.Scripts.Models.Towers.Behaviors;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Assets.Scripts.Models.Towers.Upgrades;
 using Assets.Scripts.Models.Towers.Weapons.Behaviors;
+using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Behaviors;
 using Assets.Scripts.Utils;
 using BTD_Mod_Helper;
@@ -18,11 +19,25 @@ using System.Collections.Generic;
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 namespace VanillaParagons
 {
+
     class Main : BloonsTD6Mod
     {
 
         public static ModSettingBool EnableParagons = new ModSettingBool(true) { displayName = "Paragons enabled? (Requires restart.)" };
         public static ModSettingBool EnableBuffableParagons = new ModSettingBool(true) { displayName = "Buffable Versions of Paragons enabled? (Requires restart.)" };
+
+        [HarmonyPatch(typeof(TowerManager), nameof(TowerManager.IsParagonLocked))]
+        internal static class TowerManager_IsParagonLocked
+        {
+            [HarmonyPostfix]
+            private static void Postfix(Tower tower, ref bool __result)
+            {
+                if (EnableParagons == false)
+                {
+                    __result = true;
+                }
+            }
+        }
 
         [HarmonyPatch(typeof(ParagonTower), nameof(ParagonTower.UpdateDegree))]
         class UpdateDegreePatch
