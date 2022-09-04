@@ -37,18 +37,21 @@ namespace VanillaParagons.PrimaryParagons.IceMonkeyParagon.Buffable
             var weapon = tower.GetWeapon();
             var projectile = weapon.projectile;
             projectile.RemoveBehavior<DamageModel>();
-            projectile.AddBehavior(new DamageModel("IceMonkeyParagonDamageModel", 25000, 999999, true, true, true, BloonProperties.None, BloonProperties.None));
-            projectile.AddBehavior(new AddBonusDamagePerHitToBloonModel("IceMonkeyParagonAddBonusDamagePerHitToBloonModel", "", 2, 50, 999999, true, false, false));
-            tower.GetDescendants<FilterInvisibleModel>().ForEach(model => model.isActive = false);
-            tower.AddBehavior(new SlowBloonsZoneModel("IceMonkeyParagonSlowBloonsZoneModel", 0, "", true, null, 0.25f, 0, true, 0, "", false, null));
+            projectile.RemoveBehavior<SlowModel>();
+            projectile.AddBehavior(new DamageModel("IceMonkeyParagonDamageModel", 180000, 999999, true, true, true, BloonProperties.None, BloonProperties.None));
+            projectile.AddBehavior(new AddBonusDamagePerHitToBloonModel("IceMonkeyParagonAddBonusDamagePerHitToBloonModel", "", 2, 400, 999999, true, false, false));
+            projectile.RemoveBehaviors<SlowModifierForTagModel>();
+            projectile.pierce = 150;
+            tower.AddBehavior(new SlowBloonsZoneModel("IceMonkeyParagonSlowBloonsZoneModel", 125, "", true, null, 0.4f, 0, false, 0, "", false, null));
             tower.RemoveBehaviors<FilterMoabModel>();
             tower.RemoveBehaviors<FilterOutTagModel>();
             tower.RemoveBehaviors<FilterBloonIfDamageTypeModel>();
-            projectile.RemoveBehaviors<SlowModifierForTagModel>();
-            projectile.pierce = 5;
             tower.range += 25;
+            weapon.rate *= 0.15f;
             attackModel.range += 25;
-            weapon.rate *= 0.1f;
+
+            tower.GetDescendants<FilterInvisibleModel>().ForEach(model => model.isActive = false);
+            tower.AddBehavior(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true));
         }
         public override int GetTowerIndex(List<TowerDetailsModel> towerSet)
         {

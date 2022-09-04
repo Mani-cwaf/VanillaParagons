@@ -19,23 +19,23 @@ namespace VanillaParagons.PrimaryParagons.IceMonkeyParagon
         public override string DisplayName => "Indefinate Negative";
         public override int Cost => 2000000;
         public override string Description => "ice colder than nothing itself, breaking the fabric of reality and piercing through any bloon.";
-        //public override string Icon => "";
-        //public override string Portrait => "";
         public override void ApplyUpgrade(TowerModel tower)
         {
             var attackModel = tower.GetAttackModel();
             var weapon = tower.GetWeapon();
             var projectile = weapon.projectile;
             projectile.RemoveBehavior<DamageModel>();
-            projectile.AddBehavior(new DamageModel("IceMonkeyParagonDamageModel", 45000, 999999, true, true, true, BloonProperties.None, BloonProperties.None));
-            projectile.AddBehavior(new AddBonusDamagePerHitToBloonModel("IceMonkeyParagonAddBonusDamagePerHitToBloonModel", "", 2, 100, 999999, true, false, false));
+            projectile.RemoveBehavior<SlowModel>();
+            projectile.AddBehavior(new DamageModel("IceMonkeyParagonDamageModel", 180000, 999999, true, true, true, BloonProperties.None, BloonProperties.None));
+            projectile.AddBehavior(new AddBonusDamagePerHitToBloonModel("IceMonkeyParagonAddBonusDamagePerHitToBloonModel", "", 2, 400, 999999, true, false, false));
             projectile.RemoveBehaviors<SlowModifierForTagModel>();
-            tower.AddBehavior(new SlowBloonsZoneModel("IceMonkeyParagonSlowBloonsZoneModel", 75, "", true, null, 0.2f, 0, false, 0, "", false, null));
+            projectile.pierce = 150;
+            tower.AddBehavior(new SlowBloonsZoneModel("IceMonkeyParagonSlowBloonsZoneModel", 125, "", true, null, 0.4f, 0, false, 0, "", false, null));
             tower.RemoveBehaviors<FilterMoabModel>();
             tower.RemoveBehaviors<FilterOutTagModel>();
             tower.RemoveBehaviors<FilterBloonIfDamageTypeModel>();
             tower.range += 25;
-            weapon.rate *= 0.2f;
+            weapon.rate *= 0.125f;
             attackModel.range += 25;
 
             tower.GetDescendants<FilterInvisibleModel>().ForEach(model => model.isActive = false);

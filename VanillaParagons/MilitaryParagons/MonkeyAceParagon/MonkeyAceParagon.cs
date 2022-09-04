@@ -14,57 +14,84 @@ using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 using Assets.Scripts.Models.Towers.Weapons;
 using Assets.Scripts.Models.Towers.Behaviors;
 using Assets.Scripts.Models.Towers.Weapons.Behaviors;
+using Il2CppSystem.Collections.Generic;
 
 namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
 {
     public class MonkeyAceParagonBase : ModVanillaParagon
     {
-        public override string BaseTower => "MonkeyAce-502";
+        public override string BaseTower => "MonkeyAce-502"; // the base bahaviors I'll build off of, basically needed cuz I'm not coding in all that monkey ace flying stuff.
     }
     public class MonkeyAceParagon : ModParagonUpgrade<MonkeyAceParagonBase>
     {
         public override string DisplayName => "Rain of fire";
         public override int Cost => 967000;
         public override string Description => "why does this exist";
-        //public override string Icon => "";
-        //public override string Portrait => "";
-        public override void ApplyUpgrade(TowerModel tower)
+        public override void ApplyUpgrade(TowerModel tower) //modifying the behaviors, and btd mod helper supplies the parameter of TowerModel (makes the tower and adds a variable so I can edit the tower).
         {
+            // created variables to use later, using the tower inserted into the tower parimeter.
             var weapon = tower.GetWeapon();
             var projectile = weapon.projectile;
+
+            //projectile count.
             weapon.emission = new ArcEmissionModel("MonkeyAceParagonArcEmissionModel", 128, 180, 360, null, false);
-            projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 110f, false, false));
+            //damage.
+            projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 220, false, false));
+            projectile.GetDamageModel().damage += 160;
+            projectile.pierce = 50;
+            //seeking.
             var seekingBehavior = new TrackTargetModel("MonkeyAceParagonTrackTargetModel", 9999999, true, false, 360, true, 700, false, false);
             projectile.AddBehavior(seekingBehavior);
-            projectile.GetDamageModel().damage += 80;
-            projectile.pierce = 50;
-            weapon.rate *= 0.5f;
 
+            //using the tower perimeter to get the missles, since the 5-0-2 already has them.
             var missile = tower.GetBehaviors<AttackAirUnitModel>().First(a => a.name == "AttackAirUnitModel_Anti-MoabMissile_");
 
-            missile.weapons[0].Rate *= 0.15f;
+            //missle attack speed
+            missile.weapons[0].Rate *= 0.1f;
+            //missle damage
             missile.weapons[0].projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 12500f, false, false));
             missile.GetDescendants<DamageModel>().ForEach(damage => damage.damage = 1000.0f);
             missile.GetDescendants<DamageModel>().ForEach(damage => damage.immuneBloonProperties = BloonProperties.None);
 
+            //found pineapples from an existing tower and duplicating them into my tower.
             tower.AddBehavior(Game.instance.model.GetTowerFromId("MonkeyAce-220").GetBehaviors<AttackAirUnitModel>()[1].Duplicate());
-            var attackModel2 = tower.GetBehaviors<AttackAirUnitModel>()[2];
-            attackModel2.weapons[0].Rate *= 0.05f;
-            attackModel2.GetDescendants<DamageModel>().ForEach(damage => damage.damage = 2500.0f);
-            attackModel2.GetDescendants<DamageModel>().ForEach(damage => damage.immuneBloonProperties = BloonProperties.None);
+            var pineapples = tower.GetBehaviors<AttackAirUnitModel>()[2];
+            //pineapple attack speed
+            pineapples.weapons[0].Rate *= 0.05f;
+            //pineapple damage
+            pineapples.GetDescendants<DamageModel>().ForEach(damage => damage.damage = 3500.0f);
+            pineapples.GetDescendants<DamageModel>().ForEach(damage => damage.immuneBloonProperties = BloonProperties.None);
 
+            //found ability model from an existing tower and duplicating it into my tower, and also getting the activate attack model (a model containing attack models exclusive to when the ability is active).
             var groundzeroAbility = Game.instance.model.GetTower(TowerType.MonkeyAce, 0, 5).GetAbility().Duplicate();
             var goundzeroAbilityAttackModel = groundzeroAbility.GetBehavior<ActivateAttackModel>();
 
+            //getting rid of the caps and changing the damage.
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().maxDamage = 999999;
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().CapDamage(999999);
-            goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().damage = 200000;
+            goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().damage = 250000;
+            //getting rid of the caps and changing the pierce.
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.maxPierce = 999999;
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.CapPierce(999999);
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.pierce = 250000;
 
             tower.AddBehavior(groundzeroAbility);
 
+            var flyingFortress1 = Game.instance.model.GetTowerFromId("MonkeyAce-005").GetBehaviors<AttackAirUnitModel>()[0].Duplicate();
+            var flyingFortress2 = Game.instance.model.GetTowerFromId("MonkeyAce-005").GetBehaviors<AttackAirUnitModel>()[1].Duplicate();
+            var flyingFortress3 = Game.instance.model.GetTowerFromId("MonkeyAce-005").GetBehaviors<AttackAirUnitModel>()[2].Duplicate();
+            var flyingFortress4 = Game.instance.model.GetTowerFromId("MonkeyAce-005").GetBehaviors<AttackAirUnitModel>()[3].Duplicate();
+            List<AttackAirUnitModel> fortressAttacks = new List<AttackAirUnitModel>() { };
+            fortressAttacks.Add(flyingFortress1);
+            fortressAttacks.Add(flyingFortress2);
+            fortressAttacks.Add(flyingFortress3);
+            fortressAttacks.Add(flyingFortress4);
+            foreach (var fortressAttack in fortressAttacks)
+            {
+                tower.AddBehavior(fortressAttack);
+            }
+
+            //making the tower hit camo by removing the invisible filters in some of my projectiles, and making the tower see camo like the ninja.
             tower.GetDescendants<FilterInvisibleModel>().ForEach(model => model.isActive = false);
             tower.AddBehavior(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true));
         }
