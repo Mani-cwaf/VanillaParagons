@@ -14,8 +14,9 @@ using HarmonyLib;
 using MelonLoader;
 using System;
 using System.Collections.Generic;
+using VanillaParagons;
 
-[assembly: MelonInfo(typeof(VanillaParagons.Main), "Vanilla Paragons", "1.0.0", "Mani_Dev")]
+[assembly: MelonInfo(typeof(VanillaParagons.Main), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 namespace VanillaParagons
 {
