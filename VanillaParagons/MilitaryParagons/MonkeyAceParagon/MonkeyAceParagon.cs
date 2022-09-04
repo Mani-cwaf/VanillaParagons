@@ -25,7 +25,7 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
     public class MonkeyAceParagon : ModParagonUpgrade<MonkeyAceParagonBase>
     {
         public override string DisplayName => "Rain of fire";
-        public override int Cost => 967000;
+        public override int Cost => 1367000;
         public override string Description => "why does this exist";
         public override void ApplyUpgrade(TowerModel tower) //modifying the behaviors, and btd mod helper supplies the parameter of TowerModel (makes the tower and adds a variable so I can edit the tower).
         {
@@ -34,10 +34,11 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
             var projectile = weapon.projectile;
 
             //projectile count.
-            weapon.emission = new ArcEmissionModel("MonkeyAceParagonArcEmissionModel", 128, 180, 360, null, false);
+            weapon.emission = new ArcEmissionModel("MonkeyAceParagonArcEmissionModel", 46, 180, 360, null, false);
+            weapon.rate *= 0.5f;
             //damage.
             projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 220, false, false));
-            projectile.GetDamageModel().damage += 160;
+            projectile.GetDamageModel().damage += 360;
             projectile.pierce = 50;
             //seeking.
             var seekingBehavior = new TrackTargetModel("MonkeyAceParagonTrackTargetModel", 9999999, true, false, 360, true, 700, false, false);
@@ -49,8 +50,8 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
             //missle attack speed
             missile.weapons[0].Rate *= 0.1f;
             //missle damage
-            missile.weapons[0].projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 12500f, false, false));
-            missile.GetDescendants<DamageModel>().ForEach(damage => damage.damage = 1000.0f);
+            missile.weapons[0].projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 22500f, false, false));
+            missile.GetDescendants<DamageModel>().ForEach(damage => damage.damage = 3000.0f);
             missile.GetDescendants<DamageModel>().ForEach(damage => damage.immuneBloonProperties = BloonProperties.None);
 
             //found pineapples from an existing tower and duplicating them into my tower.
@@ -59,7 +60,7 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
             //pineapple attack speed
             pineapples.weapons[0].Rate *= 0.05f;
             //pineapple damage
-            pineapples.GetDescendants<DamageModel>().ForEach(damage => damage.damage = 3500.0f);
+            pineapples.GetDescendants<DamageModel>().ForEach(damage => damage.damage = 4500.0f);
             pineapples.GetDescendants<DamageModel>().ForEach(damage => damage.immuneBloonProperties = BloonProperties.None);
 
             //found ability model from an existing tower and duplicating it into my tower, and also getting the activate attack model (a model containing attack models exclusive to when the ability is active).
@@ -69,7 +70,7 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
             //getting rid of the caps and changing the damage.
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().maxDamage = 999999;
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().CapDamage(999999);
-            goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().damage = 250000;
+            goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.GetDamageModel().damage = 450000;
             //getting rid of the caps and changing the pierce.
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.maxPierce = 999999;
             goundzeroAbilityAttackModel.GetDescendant<AttackAirUnitModel>().weapons[0].projectile.CapPierce(999999);
@@ -88,6 +89,13 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
             fortressAttacks.Add(flyingFortress4);
             foreach (var fortressAttack in fortressAttacks)
             {
+                if (fortressAttack.weapons.Length > 0)
+                {
+                    fortressAttack.weapons[0].projectile.AddBehavior(new TrackTargetModel("MonkeyAceParagonTrackTargetModel", 9999999, true, false, 360, true, 10000, false, false));
+                    fortressAttack.weapons[0].projectile.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1, 1100f, false, false));
+                    fortressAttack.weapons[0].projectile.GetDamageModel().damage = 750;
+                    fortressAttack.weapons[0].rate *= 0.5f;
+                }
                 tower.AddBehavior(fortressAttack);
             }
 
