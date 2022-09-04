@@ -133,16 +133,12 @@
     <Folder Include="SubTowers\Primary\" />
     <Folder Include="SubTowers\Support\" />
     <Folder Include="SupportParagons\SpikeFactoryParagon\Buffable\" />
-    <Folder Include="SupportParagons\SpikeFactoryParagon\Displays\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SupportParagons\BananaFarmParagon\Displays\BananaFarmParagonDisplay.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SupportParagons\BananaFarmParagon\Displays\BananaCrateDisplay.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="SupportParagons\SpikeFactoryParagon\SpikeDisplay.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
