@@ -23,7 +23,7 @@ namespace VanillaParagons
 
     class Main : BloonsTD6Mod
     {
-
+        public static ModSettingBool OPParagons = new ModSettingBool(false) { displayName = "Over Powered Paragons enabled? (Requires restart, does not effect previously places paragons.)" };
         public static ModSettingBool EnableParagons = new ModSettingBool(true) { displayName = "Paragons enabled? (Requires restart.)" };
         public static ModSettingBool EnableBuffableParagons = new ModSettingBool(true) { displayName = "Buffable Versions of Paragons enabled? (Requires restart.)" };
 

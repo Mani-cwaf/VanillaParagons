@@ -59,7 +59,7 @@ namespace VanillaParagons.SupportParagons.VillageParagon.Buffable
             {
                 var weapon = tower.GetWeapon();
                 var projectile = weapon.projectile;
-                weapon.rate *= 0.642857f;
+                weapon.Rate *= 0.642857f;
                 projectile.GetDamageModel().damage *= 2.5f;
                 projectile.pierce *= 2.5f;
                 tower.GetBehavior<RangeSupportModel>().additive += 10;

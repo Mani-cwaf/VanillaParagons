@@ -32,7 +32,7 @@ namespace VanillaParagons.PrimaryParagons.GlueGunnerParagon.Buffable
         {
             var weapon = tower.GetWeapon();
             var projectile = weapon.projectile;
-            weapon.rate *= 0.5f;
+            weapon.Rate *= 0.5f;
             projectile.AddBehavior(new SlowModel("GlueParagonSlowModelWeak", 0.8f, 5, "", 999999, "GlueStronger", true, false, null, true, false, false, 100));
             projectile.pierce += 2;
             projectile.maxPierce = 999999;
@@ -58,7 +58,7 @@ namespace VanillaParagons.PrimaryParagons.GlueGunnerParagon.Buffable
             {
                 var weapon = tower.GetWeapon();
                 var projectile = weapon.projectile;
-                weapon.rate *= 0.642857f;
+                weapon.Rate *= 0.642857f;
                 projectile.GetBehaviors<AddBehaviorToBloonModel>()[1].GetBehavior<DamageOverTimeModel>().damage *= 2.5f;
                 projectile.pierce *= 2.5f;
             }

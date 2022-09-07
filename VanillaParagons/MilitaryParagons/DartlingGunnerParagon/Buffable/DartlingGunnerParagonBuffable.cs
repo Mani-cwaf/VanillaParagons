@@ -33,7 +33,7 @@ namespace VanillaParagons.MilitaryParagons.DartlingGunnerParagon.Buffable
             var weapon = tower.GetWeapon();
             var projectile = weapon.projectile;
             weapon.emission = new RandomEmissionModel("DartlingGunnerEmissionModel", 1, 2, 0, null, false, 1, 1, 0, false);
-            weapon.rate *= .015f;
+            weapon.Rate *= .015f;
             projectile.AddBehavior(new KnockbackModel("DartlingGunnerKnockbackModel", 1.1f, 1.1f, 1.1f, 0.4f, "KnockbackKnockback", null));
             projectile.GetBehavior<DamageModifierForTagModel>().damageAddative = 35;
             projectile.GetDamageModel().damage = 5;
@@ -55,7 +55,7 @@ namespace VanillaParagons.MilitaryParagons.DartlingGunnerParagon.Buffable
             {
                 var weapon = tower.GetWeapon();
                 var projectile = weapon.projectile;
-                weapon.rate *= 0.642857f;
+                weapon.Rate *= 0.642857f;
                 projectile.GetDamageModel().damage *= 2.5f;
                 projectile.pierce *= 2.5f;
             }

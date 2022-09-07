@@ -33,10 +33,10 @@ namespace VanillaParagons.MagicParagons.WizardMonkeyParagon
             tower.AddBehavior(new TowerCreateTowerModel("CreateLordPhoenix", GetTowerModel<LordPhoenix>().Duplicate(), true));
             projectile.GetDamageModel().damage += 200;
             projectile.AddBehavior(new DamageModifierForTagModel("Boss", "Boss", 2.5f, 0, false, true));
-            weapon.rate *= 0.5f;
+            weapon.Rate *= 0.5f;
             dragonsBreath.GetDamageModel().damage += 85;
             dragonsBreath.AddBehavior(new DamageModifierForTagModel("Boss", "Boss", 2.5f, 0, false, true));
-            dragonsBreathWeapon.rate *= 0.6f;
+            dragonsBreathWeapon.Rate *= 0.6f;
             tower.AddBehavior(Game.instance.model.GetTowerFromId("WizardMonkey-004").GetBehavior<NecromancerZoneModel>().Duplicate());
             tower.AddBehavior(Game.instance.model.GetTowerFromId("WizardMonkey-004").GetBehaviors<AttackModel>().First(a => a.name == "AttackModel_Attack Necromancer_").Duplicate());
             var SpawnUltraBloon = tower.GetAttackModel(3);
@@ -49,11 +49,11 @@ namespace VanillaParagons.MagicParagons.WizardMonkeyParagon
             SpawnUltraBloonProjectile.pierce = 100;
             SpawnUltraBloonWeapon.emission.Cast<NecromancerEmissionModel>().maxPiercePerBloon = 1;
             SpawnUltraBloonWeapon.fireWithoutTarget = true;
-            SpawnUltraBloonWeapon.rate = 2;
+            SpawnUltraBloonWeapon.Rate = 2;
             SpawnUltraBloon.range = 999;
             tower.GetBehavior<NecromancerZoneModel>().attackUsedForRangeModel.range = 999;
             var fireStorm = Game.instance.model.GetTower(TowerType.WizardMonkey, 1, 2, 0).behaviors.First(a => a.name.Contains("Wall")).Cast<AttackModel>().Duplicate();
-            fireStorm.weapons[0].projectile.GetBehavior<AgeModel>().lifespan = 1.25f;
+            fireStorm.weapons[0].projectile.GetBehavior<AgeModel>().Lifespan = 1.25f;
             fireStorm.weapons[0].projectile.GetDamageModel().damage = 500;
             fireStorm.weapons[0].Rate *= 0.1f;
             fireStorm.weapons[0].fireWithoutTarget = false;

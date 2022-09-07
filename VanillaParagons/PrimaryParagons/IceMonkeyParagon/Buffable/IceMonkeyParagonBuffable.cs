@@ -47,7 +47,7 @@ namespace VanillaParagons.PrimaryParagons.IceMonkeyParagon.Buffable
             tower.RemoveBehaviors<FilterOutTagModel>();
             tower.RemoveBehaviors<FilterBloonIfDamageTypeModel>();
             tower.range += 25;
-            weapon.rate *= 0.15f;
+            weapon.Rate *= 0.15f;
             attackModel.range += 25;
 
             tower.GetDescendants<FilterInvisibleModel>().ForEach(model => model.isActive = false);
@@ -68,7 +68,7 @@ namespace VanillaParagons.PrimaryParagons.IceMonkeyParagon.Buffable
             {
                 var weapon = tower.GetWeapon();
                 var projectile = weapon.projectile;
-                weapon.rate *= 0.642857f;
+                weapon.Rate *= 0.642857f;
                 projectile.GetDamageModel().damage *= 2.5f;
                 projectile.pierce *= 2.5f;
                 tower.GetBehavior<SlowBloonsZoneModel>().speedScale = 0.1f;

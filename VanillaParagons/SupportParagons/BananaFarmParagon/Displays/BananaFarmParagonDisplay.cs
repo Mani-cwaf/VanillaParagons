@@ -39,7 +39,7 @@ namespace VanillaParagons.SupportParagons.BananaFarmParagon.Displays
             SetMeshTexture(node, "BananaFarmParagonDisplay");
         }
     }
-    public class BananaCrateDisplay : ModDisplay
+    public class BananaCRateDisplay : ModDisplay
     {
         public override string BaseDisplay => "88442e0b3684e3446aaa70a036da69c9";
 

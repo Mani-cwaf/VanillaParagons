@@ -31,10 +31,10 @@ namespace VanillaParagons.SupportParagons.SpikeFactoryParagon
         {
             var weapon = tower.GetWeapon();
             var projectile = weapon.projectile = Game.instance.model.GetTowerFromId("SpikeFactory-005").GetWeapon().projectile.Duplicate();
-            weapon.rate *= 0.1f;
+            weapon.Rate *= 0.1f;
             projectile.GetDamageModel().damage = 125;
             projectile.pierce = 3000;
-            projectile.GetBehavior<AgeModel>().lifespan = 9999999;
+            projectile.GetBehavior<AgeModel>().Lifespan = 9999999;
             projectile.GetDamageModel().immuneBloonProperties = BloonProperties.None;
             projectile.RemoveBehavior<FadeProjectileModel>();
             projectile.RemoveBehavior<EndOfRoundClearBypassModel>();
@@ -54,10 +54,10 @@ namespace VanillaParagons.SupportParagons.SpikeFactoryParagon
             aat2.GetBehavior<WeaponRateMinModel>().min *= 0.5f;
             aat3.GetBehavior<WeaponRateMinModel>().min *= 0.5f;
             aat4.GetBehavior<WeaponRateMinModel>().min *= 0.5f;
-            aat1.rate *= 0.5f;
-            aat2.rate *= 0.5f;
-            aat3.rate *= 0.5f;
-            aat4.rate *= 0.5f;
+            aat1.Rate *= 0.5f;
+            aat2.Rate *= 0.5f;
+            aat3.Rate *= 0.5f;
+            aat4.Rate *= 0.5f;
             tower.AddBehavior(abilty);
         }
     }

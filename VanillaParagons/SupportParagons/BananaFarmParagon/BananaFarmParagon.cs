@@ -29,7 +29,7 @@ namespace VanillaParagons.SupportParagons.BananaFarmParagon
             weapon.GetBehavior<EmissionsPerRoundFilterModel>().count = 30;
             projectile.GetBehavior<CashModel>().minimum = 5550;
             projectile.GetBehavior<CashModel>().maximum = 5550;
-            projectile.ApplyDisplay<BananaCrateDisplay>();
+            projectile.ApplyDisplay<BananaCRateDisplay>();
             tower.AddBehavior(new PerRoundCashBonusTowerModel("BananaFarmParagonPerRoundCashBonusTowerModel", 165000, 0, 1, new PrefabReference() { guidRef = "80178409df24b3b479342ed73cffb63d" }, false));
 
         }
