@@ -22,6 +22,7 @@ namespace VanillaParagons.MilitaryParagons.MonkeyAceParagon
     public class MonkeyAceParagonBase : ModVanillaParagon
     {
         public override string BaseTower => "MonkeyAce-502";
+        public override string Name => "MonkeyAce";
     }
     public class MonkeyAceParagon : ModParagonUpgrade<MonkeyAceParagonBase>
     {
